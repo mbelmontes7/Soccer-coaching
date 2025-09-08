@@ -270,11 +270,14 @@ iframe {
   font-size: 0;
 }
 
+/* === Sign Up Button Styles (used for 'Sign up here' button) === */
+/* Padding for the sign up button is set below */
+/* Border for the sign up button is set below */
 .btn {
-  font-weight: 600;
-  border-width: 1px;
+  font-weight: 500;
+  border-width: 9px;
   font-style: normal;
-  margin: 0.6rem 0.6rem;
+  margin: 0.5rem 0.6rem;
   white-space: normal;
   transition: all 0.2s ease-in-out;
   display: inline-flex;
@@ -449,7 +452,7 @@ nav .mbr-section-btn {
   outline-style: none;
   -webkit-animation: arrowdown 1.7s ease-in-out infinite;
   animation: arrowdown 1.7s ease-in-out infinite;
-  color: #b47d7d;
+  color: #e8dede;
 }
 
 .mbr-arrow>a>i {
