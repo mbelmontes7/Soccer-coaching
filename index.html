@@ -1869,37 +1869,7 @@
                         <!-- SETUP — get a free access key at https://web3forms.com (just enter your
                              email, no account needed, key arrives instantly) and paste it below in
                              place of REPLACE_WEB3FORMS_KEY. Until then this form won't send. -->
-                        <form class="mbr-form reveal" id="contactForm" action="https://api.web3forms.com/submit"
-                            method="POST">
-                            <input type="hidden" name="access_key" value="REPLACE_WEB3FORMS_KEY">
-                            <input type="hidden" name="subject" value="New message from your website">
-                            <input type="text" name="botcheck" tabindex="-1" autocomplete="off"
-                                style="position:absolute;left:-9999px" aria-hidden="true">
 
-                            <div id="formAlertOk" hidden class="form-alert ok">Thanks for your message! I'll get back
-                                to you soon.</div>
-                            <div id="formAlertBad" hidden class="form-alert bad">Oops&hellip; something went wrong.
-                                Please email or text me instead.</div>
-
-                            <label class="sr-only" for="name-c">Name</label>
-                            <input type="text" name="name" placeholder="Your name" class="form-control" id="name-c"
-                                required>
-
-                            <label class="sr-only" for="email-c">Email</label>
-                            <input type="email" name="email" placeholder="Your e-mail" class="form-control"
-                                id="email-c" required>
-
-                            <label class="sr-only" for="phone-c">Phone (optional)</label>
-                            <input type="tel" name="phone" placeholder="Your phone (optional)" class="form-control"
-                                id="phone-c">
-
-                            <label class="sr-only" for="msg-c">Message</label>
-                            <textarea name="message" placeholder="How can I help? Tell me about your player."
-                                class="form-control" id="msg-c" required></textarea>
-
-                            <button type="submit" class="btn btn--green btn--lg" id="formSubmitBtn">Send
-                                message</button>
-                        </form>
                     </div>
                 </div>
             </section>
@@ -2098,48 +2068,6 @@
 
             // Footer year
             document.getElementById('year').textContent = new Date().getFullYear();
-
-            /* ---- Contact form: submit to Web3Forms without leaving the page ----
-               The <form action> above is the no-JS fallback (a real POST straight
-               to Web3Forms); this upgrades it to an inline success/error message. */
-            var contactForm = document.getElementById('contactForm');
-            if (contactForm)
-            {
-                var formOk = document.getElementById('formAlertOk');
-                var formBad = document.getElementById('formAlertBad');
-                var formBtn = document.getElementById('formSubmitBtn');
-                contactForm.addEventListener('submit', function (e)
-                {
-                    e.preventDefault();
-                    if (formOk) formOk.hidden = true;
-                    if (formBad) formBad.hidden = true;
-                    var sending = formBtn.textContent;
-                    formBtn.disabled = true;
-                    formBtn.textContent = 'Sending…';
-                    fetch(contactForm.action, {
-                        method: 'POST',
-                        headers: { Accept: 'application/json' },
-                        body: new FormData(contactForm)
-                    })
-                        .then(function (res) { return res.json(); })
-                        .then(function (data)
-                        {
-                            formBtn.disabled = false;
-                            formBtn.textContent = sending;
-                            if (data && data.success)
-                            {
-                                if (formOk) formOk.hidden = false;
-                                contactForm.reset();
-                            } else if (formBad) { formBad.hidden = false; }
-                        })
-                        .catch(function ()
-                        {
-                            formBtn.disabled = false;
-                            formBtn.textContent = sending;
-                            if (formBad) formBad.hidden = false;
-                        });
-                });
-            }
 
             /* ---- Stat counters: count up from 0 when the green band scrolls into view ---- */
             var statEls = [].slice.call(document.querySelectorAll('.stat b[data-count]'));
