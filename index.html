@@ -1,276 +1,2301 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="generator" content="Mobirise v5.3.0, mobirise.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="shortcut icon" href="assets/images/mbr-187x374.png" type="image/x-icon">
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // Runs before paint: mark JS available, lock in the colour theme (no flash),
+        // and lock scroll while the page "unfolds" like a laptop lid.
+        (function ()
+        {
+            var el = document.documentElement;
+            el.className = el.className.replace('no-js', 'js');
+            try
+            {
+                var t = localStorage.getItem('theme');
+                if (t !== 'light' && t !== 'dark')
+                {
+                    t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                el.setAttribute('data-theme', t);
+            } catch (e) { el.setAttribute('data-theme', 'light'); }
 
+            var reduce = false;
+            try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { }
+            if (!reduce)
+            {
+                el.classList.add('intro', 'is-opening');
+            }
+            // Last-resort guarantee the page becomes visible even if every later script fails.
+            setTimeout(function ()
+            {
+                el.classList.remove('intro', 'is-opening', 'css-intro');
+                el.classList.add('intro-done');
+                var s = document.getElementById('introScreen');
+                if (s) s.style.display = 'none';
+            }, 5500);
+        })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
-    <title>Home</title>
-    <link rel="stylesheet" href="assets/tether/tether.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="assets/animatecss/animate.css">
-    <link rel="stylesheet" href="assets/dropdown/css/style.css">
-    <link rel="stylesheet" href="assets/formstyler/jquery.formstyler.css">
-    <link rel="stylesheet" href="assets/formstyler/jquery.formstyler.theme.css">
-    <link rel="stylesheet" href="assets/datepicker/jquery.datetimepicker.min.css">
-    <link rel="stylesheet" href="assets/socicon/css/styles.css">
-    <link rel="stylesheet" href="assets/theme/css/style.css">
-    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
-    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-    <!-- Google Fonts for modern look -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <!-- EDIT: swap "your area" / "your local park" below for your city so parents Googling nearby can find you -->
+    <title>Coach M — Youth Soccer Training &amp; Private Lessons</title>
+    <meta name="description"
+        content="Private soccer lessons, small-group sessions, and skills camps for young players with Coach M — a licensed coach with 12+ years playing and 4 years developing kids. All equipment provided.">
+    <meta name="theme-color" content="#0B7C3D" id="themeColor">
 
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B7C3D'/%3E%3Ctext x='16' y='23' font-family='Arial,Helvetica,sans-serif' font-size='19' font-weight='700' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
 
+    <!-- Open Graph / social sharing. TODO: once the site has a domain, make og:image an absolute URL (https://yourdomain.com/assets/images/mbr-1920x1279.jpeg) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Coach M — Youth Soccer Training &amp; Private Lessons">
+    <meta property="og:description"
+        content="Private lessons, small-group sessions, and skills camps for young players. Licensed coach. All gear provided.">
+    <meta property="og:image" content="assets/images/mbr-1920x1279.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://calendly.com">
+    <link rel="preconnect" href="https://assets.calendly.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
+    <style>
+        /* ============================================================
+           Coach M — youth soccer training
+           Design system: pitch green + ink black + electric lime,
+           Anton display / Inter body, hard-edged sporty shadows.
+           ============================================================ */
 
+        :root {
+            /* brand — constant in both themes */
+            --green: #12A150;
+            --green-dark: #0B7C3D;
+            /* solid-green button background */
+            --green-deep: #05351d;
+            /* dark-green colour bands (stats, footer) */
+            --lime: #D8F65C;
+            --white: #ffffff;
+            /* literal white, for text on colour bands */
+            --menu-bg: #0B0F0C;
+            /* mobile menu is always dark */
+
+            /* themed tokens (light values) */
+            --paper: #FBFAF7;
+            --paper-2: #F1EFE9;
+            --surface: #ffffff;
+            --ink: #0B0F0C;
+            --ink-soft: #3c443e;
+            --edge: #0B0F0C;
+            --accent: #0B7C3D;
+            /* green used for text: kickers, links */
+            --band: #0B0F0C;
+            /* "how it works" panel */
+            --shadow: 6px 6px 0 var(--edge);
+            --shadow-sm: 4px 4px 0 var(--edge);
+
+            --wrap: 1120px;
+            --gutter: clamp(1rem, 3.2vw, 2rem);
+            --section-y: clamp(2.25rem, 5vw, 4rem);
+            --radius: 3px;
+        }
+
+        :root[data-theme="dark"] {
+            --paper: #0e1211;
+            --paper-2: #161b18;
+            --surface: #191f1c;
+            --ink: #ECEAE2;
+            --ink-soft: #a7b0a8;
+            --edge: #E3E0D6;
+            --accent: #45DB90;
+            --band: #05100b;
+        }
+
+        /* fallback for when JS is disabled */
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --paper: #0e1211;
+                --paper-2: #161b18;
+                --surface: #191f1c;
+                --ink: #ECEAE2;
+                --ink-soft: #a7b0a8;
+                --edge: #E3E0D6;
+                --accent: #45DB90;
+                --band: #05100b;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            overflow-x: hidden;
+            transition: background-color .3s ease, color .3s ease;
+        }
+
+        /* ---------- Intro: the laptop lid swings open ----------
+           Orchestrated by GSAP (loaded as the animation framework); the CSS
+           keyframe below is the fallback. Reduced-motion skips it. */
+        @keyframes lid-open {
+            0% {
+                transform: perspective(2600px) rotateX(74deg);
+                opacity: 0.5;
+            }
+
+            55% {
+                opacity: 1;
+            }
+
+            74% {
+                transform: perspective(2600px) rotateX(-3deg);
+            }
+
+            100% {
+                transform: perspective(2600px) rotateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* reclined-back starting state while the intro is pending (hinged at the base) */
+        .js.intro .laptop__lid {
+            transform: perspective(2600px) rotateX(74deg);
+            opacity: 0.5;
+        }
+
+        .js.intro .laptop__viewport {
+            opacity: 0;
+        }
+
+        /* CSS fallback — added by JS only when GSAP did not load.
+           Sequence: soccer-ball splash (~1.7s) -> lid swings open. */
+        .js.intro.css-intro .laptop__lid {
+            animation: lid-open 1.05s cubic-bezier(.22, .7, .25, 1) 2s forwards;
+        }
+
+        .js.intro.css-intro .laptop__viewport {
+            animation: fade-in .5s ease 2.45s forwards;
+        }
+
+        .js.intro.css-intro .intro-screen__ball {
+            animation: ball-fade .3s ease both;
+        }
+
+        .js.intro.css-intro .ball-travel {
+            animation: ball-travel .95s cubic-bezier(.25, .8, .35, 1) both;
+        }
+
+        .js.intro.css-intro .ball-turn {
+            animation: ball-turn .95s cubic-bezier(.25, .8, .35, 1) both;
+        }
+
+        .js.intro.css-intro .intro-screen__shadow {
+            animation: ball-fade .5s ease .35s both;
+        }
+
+        .js.intro.css-intro .intro-screen__text {
+            animation: fade-up .55s ease .45s both;
+        }
+
+        .js.intro.css-intro .intro-screen {
+            animation: intro-exit .55s cubic-bezier(.6, 0, .35, 1) 1.75s forwards;
+        }
+
+        @keyframes fade-in {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* the ball rolls in from the left — position and spin animate together
+           on separate (nested) elements so they read as one rolling motion */
+        @keyframes ball-travel {
+            0% {
+                transform: translateX(-190%);
+            }
+
+            62% {
+                transform: translateX(8%);
+            }
+
+            80% {
+                transform: translateX(-4%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes ball-turn {
+            0% {
+                transform: rotate(-430deg);
+            }
+
+            62% {
+                transform: rotate(30deg);
+            }
+
+            80% {
+                transform: rotate(-10deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes ball-fade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes intro-exit {
+            to {
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @keyframes tag-in-left {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.88);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* --- the soccer-ball splash screen --- */
+        .intro-screen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 4000;
+            background: var(--green-deep);
+            place-items: center;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .js.intro .intro-screen {
+            display: grid;
+        }
+
+        .intro-screen__stage {
+            width: min(240px, 62vw);
+            margin: 0 auto;
+            overflow: hidden;
+            padding-block: 16px;
+        }
+
+        .intro-screen__ball {
+            display: block;
+            width: clamp(50px, 10vw, 76px);
+            aspect-ratio: 1;
+            margin: 0 auto;
+            overflow: visible;
+            filter: drop-shadow(0 10px 11px rgba(0, 0, 0, 0.4));
+        }
+
+        .intro-screen__ball .ball-travel,
+        .intro-screen__ball .ball-turn,
+        .intro-screen__ball picture,
+        .intro-screen__ball img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .intro-screen__ball img {
+            border-radius: 50%;
+            border: 3px solid #0B0F0C;
+            object-fit: cover;
+        }
+
+        .ball-travel,
+        .ball-turn {
+            transform-origin: 50% 50%;
+        }
+
+        .intro-screen__shadow {
+            width: clamp(36px, 7vw, 54px);
+            height: 10px;
+            margin: -4px auto 0;
+            background: radial-gradient(closest-side, rgba(0, 0, 0, 0.4), transparent 75%);
+        }
+
+        .intro-screen__text {
+            margin-top: 1rem;
+            font-family: 'Anton', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: #fff;
+            font-size: clamp(1.5rem, 4.6vw, 2.4rem);
+            line-height: 1;
+        }
+
+        .intro-screen__text .g {
+            color: var(--lime);
+        }
+
+        /* while the lid swings, don't let the tilt spawn scrollbars */
+        .js.is-opening,
+        .js.is-opening body {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Anton', 'Inter', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 0.98;
+            letter-spacing: 0.01em;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: -100px;
+            z-index: 200;
+            background: var(--lime);
+            color: #0B0F0C;
+            font-weight: 700;
+            padding: 0.7rem 1.1rem;
+            border: 2px solid #0B0F0C;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: top .2s ease;
+        }
+
+        .skip-link:focus-visible {
+            top: 1rem;
+        }
+
+        .wrap {
+            max-width: var(--wrap);
+            margin-inline: auto;
+            padding-inline: var(--gutter);
+        }
+
+        .section {
+            padding-block: var(--section-y);
+        }
+
+        section[id] {
+            scroll-margin-top: 84px;
+        }
+
+        /* ---------- Shared bits ---------- */
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .kicker::before {
+            content: "";
+            width: 22px;
+            height: 3px;
+            background: var(--green);
+            display: block;
+        }
+
+        .kicker--light {
+            color: var(--lime);
+        }
+
+        .kicker--light::before {
+            background: var(--lime);
+        }
+
+        .h2 {
+            font-size: clamp(1.4rem, 3.8vw, 2.25rem);
+        }
+
+        .lead {
+            font-size: clamp(1rem, 1.6vw, 1.1rem);
+            color: var(--ink-soft);
+            max-width: 46ch;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.5rem 0.9rem;
+            border: 2px solid var(--edge);
+            border-radius: var(--radius);
+            background: var(--surface);
+            color: var(--ink);
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease, border-color .15s ease;
+            box-shadow: 2px 2px 0 var(--edge);
+        }
+
+        .btn:hover,
+        .btn:focus-visible {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 var(--edge);
+        }
+
+        .btn--primary {
+            background: var(--lime);
+            color: #0B0F0C;
+        }
+
+        .btn--green {
+            background: var(--green-dark);
+            border-color: var(--edge);
+            color: var(--white);
+        }
+
+        .btn--dark {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn--ghost {
+            background: transparent;
+            border-color: currentColor;
+            box-shadow: none;
+        }
+
+        .btn--ghost:hover,
+        .btn--ghost:focus-visible {
+            box-shadow: none;
+            background: rgba(127, 127, 127, 0.16);
+        }
+
+        .hero .btn--ghost {
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+
+        .btn--lg {
+            padding: 0.62rem 1.15rem;
+            font-size: 0.74rem;
+        }
+
+        /* ---------- Header / nav ---------- */
+        .site-header {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 100;
+            transition: background-color .25s ease, box-shadow .25s ease, border-color .25s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .site-header.is-stuck {
+            background: var(--paper);
+            border-bottom-color: var(--edge);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-block: 0.85rem;
+        }
+
+        .nav__end {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .icon-btn {
+            position: relative;
+            z-index: 110;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            background: transparent;
+            border: 2px solid currentColor;
+            border-radius: var(--radius);
+            color: var(--ink);
+            cursor: pointer;
+            flex: none;
+        }
+
+        .icon-btn svg {
+            width: 19px;
+            height: 19px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .icon-btn .i-sun {
+            display: none;
+        }
+
+        :root[data-theme="dark"] .icon-btn .i-sun {
+            display: block;
+        }
+
+        :root[data-theme="dark"] .icon-btn .i-moon {
+            display: none;
+        }
+
+        .site-header.is-menu-open .icon-btn {
+            color: var(--white);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .brand svg {
+            width: 25px;
+            height: 25px;
+            flex: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.3rem;
+            list-style: none;
+        }
+
+        .nav-links a:not(.btn) {
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .nav-links a:not(.btn):hover {
+            color: var(--green);
+        }
+
+        .nav-toggle {
+            display: none;
+            position: relative;
+            z-index: 110;
+            flex-direction: column;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 2px solid currentColor;
+            border-radius: var(--radius);
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .site-header.is-menu-open .nav-toggle {
+            color: var(--white);
+        }
+
+        .nav-toggle span {
+            width: 20px;
+            height: 2px;
+            background: currentColor;
+            transition: transform .25s ease, opacity .2s ease;
+        }
+
+        .site-header.is-menu-open .nav-toggle span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .site-header.is-menu-open .nav-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .site-header.is-menu-open .nav-toggle span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ---------- Hero (story + cut-out, inside a laptop) ---------- */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: var(--paper);
+            border-bottom: 3px solid var(--edge);
+            padding-top: clamp(6rem, 12vw, 8.5rem);
+            padding-bottom: clamp(4rem, 8vw, 6rem);
+        }
+
+        /* --- the laptop --- */
+        .laptop {
+            --bezel: #0b100e;
+            --rim: rgba(255, 255, 255, 0.1);
+            max-width: 1020px;
+            margin: 0 auto;
+            perspective: 2600px;
+        }
+
+        :root[data-theme="dark"] .laptop {
+            --bezel: #1b221e;
+            --rim: rgba(255, 255, 255, 0.16);
+        }
+
+        .laptop__lid {
+            position: relative;
+            transform-origin: 50% 100%;
+            filter: drop-shadow(0 36px 60px rgba(6, 20, 12, 0.34));
+        }
+
+        .laptop__screen {
+            position: relative;
+            background: var(--bezel);
+            border: 1px solid var(--rim);
+            border-radius: clamp(14px, 2vw, 24px) clamp(14px, 2vw, 24px) 5px 5px;
+            padding: clamp(11px, 1.6vw, 18px);
+            padding-top: clamp(16px, 2.2vw, 26px);
+        }
+
+        .laptop__cam {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(64px, 8vw, 96px);
+            height: clamp(11px, 1.5vw, 16px);
+            background: var(--bezel);
+            border-radius: 0 0 9px 9px;
+        }
+
+        .laptop__cam::after {
+            content: "";
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: #2f3833;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07);
+        }
+
+        .laptop__viewport {
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--paper);
+        }
+
+        .laptop__viewport .hero__grid {
+            padding: clamp(1.6rem, 3.5vw, 3rem);
+        }
+
+        /* keep the photo tidy inside the screen — no bleeding into the bezel */
+        .laptop .hero__figure {
+            max-width: 100%;
+        }
+
+        .laptop__base {
+            position: relative;
+            width: 106%;
+            margin-left: -3%;
+            height: clamp(14px, 1.9vw, 22px);
+            background: linear-gradient(180deg, #333b37 0%, #1b221e 46%, #0c100e 100%);
+            border-radius: 2px 2px 13px 13px;
+            box-shadow: 0 38px 48px -18px rgba(0, 0, 0, 0.5);
+        }
+
+        .laptop__base::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: 4%;
+            right: 4%;
+            height: 3px;
+            border-radius: 0 0 4px 4px;
+            background: #063a25;
+        }
+
+        .laptop__notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(70px, 12vw, 130px);
+            height: 46%;
+            background: linear-gradient(180deg, #0f1512, #1d241f);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .hero__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: "head" "fig" "body";
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+        }
+
+        .hero__head {
+            grid-area: head;
+            text-align: center;
+        }
+
+        .hero__figurewrap {
+            grid-area: fig;
+        }
+
+        .hero__body {
+            grid-area: body;
+        }
+
+        .hero .kicker {
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.9rem, 5.6vw, 3.1rem);
+            line-height: 0.92;
+            margin: 0.3rem 0 0.4rem;
+        }
+
+        .hero h1 .im {
+            display: block;
+            font-size: 0.32em;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.32em;
+        }
+
+        .hero h1 .name {
+            color: var(--accent);
+        }
+
+        .hero__aka {
+            font-weight: 600;
+            color: var(--ink-soft);
+            font-size: clamp(0.88rem, 1.6vw, 0.98rem);
+            margin-bottom: 0.9rem;
+        }
+
+        .hero__facts {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .hero__facts li {
+            font-weight: 700;
+            font-size: 0.66rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: var(--surface);
+            color: var(--ink);
+            border: 2px solid var(--edge);
+            border-radius: 2px;
+            padding: 0.32rem 0.5rem;
+            box-shadow: 3px 3px 0 var(--edge);
+        }
+
+        /* tags stay hidden until the lid finishes opening, then pop in */
+        .js .hero__facts li {
+            opacity: 0;
+        }
+
+        .js.intro-done .hero__facts li {
+            animation: tag-in-left .45s cubic-bezier(.2, 1.35, .4, 1) both;
+        }
+
+        .js.intro-done .hero__facts .f1 {
+            animation-delay: .04s;
+        }
+
+        .js.intro-done .hero__facts .f2 {
+            animation-delay: .15s;
+        }
+
+        .js.intro-done .hero__facts .f3 {
+            animation-delay: .26s;
+        }
+
+        .hero__stage {
+            position: relative;
+            width: min(320px, 72vw);
+            height: clamp(260px, 64vw, 340px);
+            margin: 0 auto;
+        }
+
+        .hero__disc {
+            position: absolute;
+            left: 50%;
+            bottom: 2%;
+            transform: translateX(-50%);
+            height: 82%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: var(--green);
+            border: 3px solid var(--edge);
+        }
+
+        .hero__disc::after {
+            content: "";
+            position: absolute;
+            inset: 8%;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.55);
+        }
+
+        .hero__figure {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            height: 100%;
+            width: auto;
+            max-width: 122%;
+            filter: drop-shadow(0 22px 26px rgba(6, 20, 12, 0.3));
+            -webkit-mask-image: linear-gradient(180deg, #000 87%, transparent 99%);
+            mask-image: linear-gradient(180deg, #000 87%, transparent 99%);
+        }
+
+        .hero__story p {
+            color: var(--ink-soft);
+            margin-bottom: 0;
+            max-width: 54ch;
+        }
+
+        .hero__story p strong {
+            color: var(--ink);
+        }
+
+        /* the rest of the story, sitting just below the laptop */
+        .hero__more {
+            max-width: 62ch;
+            margin: clamp(2.25rem, 5vw, 3.75rem) auto 0;
+        }
+
+        .hero__more p {
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+        }
+
+        .hero__more p:last-child {
+            margin-bottom: 0;
+        }
+
+        .hero__more strong {
+            color: var(--ink);
+        }
+
+        .hero__cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .hero__cta .btn {
+            padding: 0.48rem 0.85rem;
+            font-size: 0.66rem;
+        }
+
+        .hero__cta .btn--ghost {
+            box-shadow: none;
+        }
+
+        @media (min-width: 900px) {
+            .hero__grid {
+                grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+                grid-template-areas:
+                    "head fig"
+                    "body fig";
+                align-items: start;
+                column-gap: clamp(1.5rem, 3.5vw, 3rem);
+                row-gap: 1.25rem;
+            }
+
+            .hero__head,
+            .hero__body {
+                text-align: left;
+            }
+
+            .hero .kicker,
+            .hero__facts {
+                justify-content: flex-start;
+            }
+
+            .hero__figurewrap {
+                align-self: center;
+            }
+
+            .hero__stage {
+                width: min(340px, 33vw);
+                height: clamp(320px, 34vw, 420px);
+                margin: 0 auto;
+            }
+
+            .hero__cta {
+                justify-content: flex-start;
+            }
+        }
+
+        /* ---------- Stats strip ---------- */
+        .stats {
+            background: var(--green-deep);
+            color: var(--white);
+            border-block: 3px solid var(--edge);
+        }
+
+        .stats__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            padding-block: clamp(2rem, 5vw, 3rem);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat b {
+            font-family: 'Anton', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+            color: var(--lime);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat span {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ---------- Programs ---------- */
+        .section-head {
+            max-width: 40ch;
+            margin-bottom: 2.25rem;
+        }
+
+        .section-head p {
+            margin-top: 1rem;
+            color: var(--ink-soft);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .card {
+            position: relative;
+            background: var(--surface);
+            border: 2px solid var(--edge);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .card__img {
+            width: 100%;
+            height: clamp(160px, 17vw, 195px);
+            object-fit: cover;
+            border-bottom: 2px solid var(--edge);
+        }
+
+        .card__price {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            background: var(--lime);
+            color: #0B0F0C;
+            border: 2px solid #0B0F0C;
+            border-radius: var(--radius);
+            padding: 0.3rem 0.6rem;
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            transform: rotate(-4deg);
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .card__price small {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.58rem;
+            display: block;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .card__body {
+            padding: 1.2rem 1.2rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            flex: 1;
+        }
+
+        .card__body h3 {
+            font-size: 1.25rem;
+        }
+
+        .card__tag {
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--accent);
+        }
+
+        .card__body p {
+            color: var(--ink-soft);
+            font-size: 0.9rem;
+        }
+
+        .card__body .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .programs__note {
+            margin-top: 2rem;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+
+        /* ---------- How it works ---------- */
+        .how {
+            background: var(--band);
+            color: var(--white);
+            border-block: 2px solid var(--edge);
+        }
+
+        .how__steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-block: 2.5rem;
+        }
+
+        .step {
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: var(--radius);
+            padding: 1.3rem;
+        }
+
+        .step b {
+            font-family: 'Anton', sans-serif;
+            font-weight: 400;
+            font-size: 1.9rem;
+            color: var(--lime);
+            line-height: 1;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .step p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.88rem;
+        }
+
+        .how__foot {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.2rem 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .how__foot p {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 44ch;
+        }
+
+        /* ---------- Book (Calendly) ---------- */
+        .book {
+            background: var(--paper-2);
+            border-block: 2px solid var(--edge);
+        }
+
+        .book__head {
+            max-width: 46ch;
+            margin-bottom: 2rem;
+        }
+
+        .book__head p {
+            margin-top: 1rem;
+            color: var(--ink-soft);
+        }
+
+        .book__tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .book__tab {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 0.5rem 0.9rem;
+            border: 2px solid var(--edge);
+            border-radius: var(--radius);
+            background: var(--surface);
+            color: var(--ink);
+            cursor: pointer;
+            box-shadow: 2px 2px 0 var(--edge);
+            transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+        }
+
+        .book__tab:hover,
+        .book__tab:focus-visible {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--edge);
+        }
+
+        .book__tab[aria-selected="true"] {
+            background: var(--lime);
+            color: #0B0F0C;
+        }
+
+        .book__widget {
+            border: 2px solid var(--edge);
+            border-radius: var(--radius);
+            background: #fff;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            min-height: 640px;
+        }
+
+        .book__widget #calendlyEmbed {
+            min-width: 320px;
+            height: 660px;
+        }
+
+        .book__placeholder {
+            display: grid;
+            place-items: center;
+            height: 640px;
+            color: #6b736c;
+            font-weight: 600;
+        }
+
+        .book__fallback {
+            margin-top: 1.25rem;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+
+        /* ---------- Contact ---------- */
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 6vw, 4rem);
+            align-items: start;
+        }
+
+        .contact__intro p {
+            color: var(--ink-soft);
+            margin-block: 1rem 1.6rem;
+        }
+
+        .contact__mail {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1rem, 2.4vw, 1.3rem);
+            word-break: break-word;
+        }
+
+        .contact__note {
+            margin-top: 1.4rem;
+            padding: 1.1rem 1.3rem;
+            background: var(--paper-2);
+            border: 2px solid var(--edge);
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        form.mbr-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            font: inherit;
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--edge);
+            border-radius: var(--radius);
+            background: var(--surface);
+            color: var(--ink);
+        }
+
+        .form-control::placeholder {
+            color: var(--ink-soft);
+            opacity: 0.7;
+        }
+
+        textarea.form-control {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-alert {
+            padding: 0.9rem 1rem;
+            border: 2px solid #0B0F0C;
+            border-radius: var(--radius);
+            font-weight: 600;
+            color: #0B0F0C;
+        }
+
+        .form-alert.ok {
+            background: var(--lime);
+        }
+
+        .form-alert.bad {
+            background: #ffd9cf;
+        }
+
+        /* ---------- Footer ---------- */
+        .site-footer {
+            background: var(--green-deep);
+            color: rgba(255, 255, 255, 0.8);
+            border-top: 3px solid var(--edge);
+            padding-block: 3rem 2rem;
+        }
+
+        .site-footer .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .site-footer .brand {
+            color: var(--white);
+        }
+
+        .site-footer .brand .ball-bg {
+            fill: var(--white);
+        }
+
+        .site-footer .brand .ball-fg {
+            fill: var(--green-deep);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+
+        .footer-copy {
+            width: 100%;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.5rem;
+        }
+
+        .footer-copy a {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ---------- Scroll to top ---------- */
+        .to-top {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            background: var(--lime);
+            color: #0B0F0C;
+            border: 2px solid #0B0F0C;
+            border-radius: var(--radius);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity .2s ease, transform .2s ease;
+            z-index: 90;
+        }
+
+        .to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* ---------- Reveal on scroll (only when JS is running) ---------- */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .js .reveal.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ---------- Mobile menu + responsive ---------- */
+        @media (max-width: 860px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                inset: 0;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1.8rem;
+                background: var(--menu-bg);
+                transform: translateY(-100%);
+                transition: transform .3s ease;
+            }
+
+            .nav-links.is-open {
+                transform: translateY(0);
+            }
+
+            .nav-links a:not(.btn),
+            .site-header:not(.is-stuck) .nav-links a:not(.btn) {
+                color: var(--white);
+                font-family: 'Anton', sans-serif;
+                font-size: 1.6rem;
+            }
+
+            .nav-links .btn--primary {
+                font-family: 'Inter', sans-serif;
+                font-size: 1rem;
+                color: #0B0F0C;
+            }
+
+            .cards,
+            .stats__grid,
+            .how__steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+            .cards,
+            .stats__grid,
+            .how__steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero__cta {
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .reveal,
+            .js .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .btn {
+                transition: none;
+            }
+
+            .js .laptop__lid,
+            .js.intro .laptop__lid,
+            .js .laptop__viewport,
+            .js.intro .laptop__viewport {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .js .hero__facts li,
+            .js.intro-done .hero__facts li {
+                opacity: 1 !important;
+                animation: none !important;
+            }
+
+            .intro-screen,
+            .js.intro .intro-screen {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <section class="menu cid-s48OLK6784" once="menu" id="menu1-h">
+    <a class="skip-link" href="#top">Skip to content</a>
 
-        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-            <div class="container-fluid">
-                <div class="navbar-brand">
-                    <span class="navbar-logo">
-
-                        <img src="assets/images/mbr-187x374.png" alt="Mobiris" style="height: 3.8rem;">
-                        </a>
-                    </span>
-                    <span class="navbar-caption-wrap"><a class="navbar-caption text-warning display-7">Coach
-                            M</a></span>
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+    <div class="intro-screen" id="introScreen" aria-hidden="true">
+        <div>
+            <div class="intro-screen__stage">
+                <!-- The actual ball from your hero photo, cropped round — a real ball,
+                     not a drawn icon. -->
+                <div class="intro-screen__ball">
+                    <div class="ball-travel">
+                        <div class="ball-turn">
+                            <picture>
+                                <source srcset="assets/images/splash-ball.webp" type="image/webp">
+                                <img src="assets/images/splash-ball.png" width="340" height="340" alt=""
+                                    aria-hidden="true">
+                            </picture>
+                        </div>
                     </div>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                        <li class="nav-item"><a class="nav-link link text-warning display-7"
-                                href="index.html#gallery2-t">Programs signup</a></li>
-                        <li class="nav-item"><a class="nav-link link text-warning text-primary display-7"
-                                href="https://forms.gle/3E2PW1Cxgi1UKExZA" target="_blank">Adult Soccer games</a></li>
+                </div>
+            </div>
+            <div class="intro-screen__shadow" aria-hidden="true"></div>
+            <p class="intro-screen__text">Hi, <span class="g">I'm&nbsp;Magaly</span></p>
+        </div>
+    </div>
+
+    <div id="app">
+        <header class="site-header" id="siteHeader">
+            <div class="wrap nav">
+                <a class="brand" href="#top" aria-label="Coach M — home">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <circle class="ball-bg" cx="16" cy="16" r="15" fill="#0B7C3D" />
+                        <path class="ball-fg" fill="#ffffff"
+                            d="M16 6.2l3.7 2.7-1.4 4.3h-4.6l-1.4-4.3zM8.6 12.1l3.6 1.2v4.4l-3.8 1.1-1.4-4.3zm14.8 0l1.6 2.4-1.4 4.3-3.8-1.1v-4.4zM12.4 19.7h7.2l1.5 4.1L16 26.4l-4.6-2.6z" />
+                    </svg>
+                    Coach&nbsp;M
+                </a>
+
+                <div class="nav__end">
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#about">My story</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#how">How it works</a></li>
+                        <li><a class="btn btn--primary" href="#book">Book a session</a></li>
                     </ul>
 
+                    <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to dark mode">
+                        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" />
+                        </svg>
+                        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="4.2" />
+                            <path
+                                d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8" />
+                        </svg>
+                    </button>
 
+                    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks"
+                        aria-label="Open menu">
+                        <span></span><span></span><span></span>
+                    </button>
                 </div>
             </div>
-        </nav>
+        </header>
 
-    </section>
+        <main id="top">
 
-    <section class="header14 cid-unRgsJALpU" id="header14-r">
+            <!-- ============ HERO + STORY (inside a laptop) ============ -->
+            <section class="hero" id="about">
+                <div class="wrap">
+                    <div class="laptop">
+                        <div class="laptop__lid">
+                            <div class="laptop__screen">
+                                <span class="laptop__cam" aria-hidden="true"></span>
+                                <div class="laptop__viewport">
+                                    <div class="hero__grid">
+                                        <div class="hero__head">
+                                            <span class="kicker">Youth soccer training</span>
+                                            <h1><span class="im">Hi, I'm</span> <span class="name">Magaly</span></h1>
+                                            <p class="hero__aka">— but every player calls me Coach&nbsp;M</p>
+                                            <ul class="hero__facts">
+                                                <li class="f1">Licensed coach</li>
+                                                <li class="f2">12+ years playing</li>
+                                                <li class="f3">4 years coaching kids</li>
+                                            </ul>
+                                        </div>
 
+                                        <div class="hero__figurewrap">
+                                            <div class="hero__stage">
+                                                <div class="hero__disc" aria-hidden="true"></div>
+                                                <picture>
+                                                    <source srcset="assets/images/coach-hero.webp" type="image/webp">
+                                                    <img class="hero__figure" src="assets/images/coach-hero.png"
+                                                        width="1202" height="1600"
+                                                        alt="Coach M in a white Mexico jersey holding a soccer ball"
+                                                        fetchpriority="high">
+                                                </picture>
+                                            </div>
+                                        </div>
 
+                                        <div class="hero__body">
+                                            <div class="hero__story">
+                                                <p>I've loved soccer for as long as I can remember — playing it,
+                                                    watching it, studying it. Along
+                                                    the way I had amazing coaches who shaped me, and coaching is how I
+                                                    get to pass that on.</p>
+                                            </div>
 
+                                            <div class="hero__cta">
+                                                <a class="btn btn--primary" href="#programs">See the programs</a>
+                                                <a class="btn btn--ghost" href="#book">Book a lesson →</a>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.hero__grid -->
+                                </div><!-- /.laptop__viewport -->
+                            </div><!-- /.laptop__screen -->
+                        </div><!-- /.laptop__lid -->
+                        <div class="laptop__base" aria-hidden="true"><span class="laptop__notch"></span></div>
+                    </div><!-- /.laptop -->
 
-
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-12 col-md-4 image-wrapper">
-                    <img src="assets/images/green-youth-soccer-camp-event-flyer-696x984.png" alt="Mobirise">
-                </div>
-                <div class="col-12 col-md">
-                    <div class="text-wrapper">
-                        <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2"><strong>Hi, My name is
-                                Magaly&nbsp;</strong></h1>
-                        <p class="mbr-text mbr-fonts-style display-7">but you can call me Coach M. With over 12 years of
-                            soccer playing experience and 3 years of coaching young players. I am also a licensed coach.
-                            I'm deeply passionate about nurturing talent and instilling valuable skills such as
-                            discipline, communication, and critical thinking through soccer. My aim is to inspire
-                            confidence and a love for the game in each player.⚽️<br><br>📧 Email:
-                            coach.m712@gmail.com&nbsp;&nbsp;<br><br></p>
-
+                    <div class="hero__more reveal">
+                        <p>Soccer taught me things that reach far past the field. Determination and resilience aren't
+                            something
+                            you only pick up in a sport — they're life skills. This game is what made me
+                            <strong>disciplined, determined, and resilient</strong>, and that's what I want every player
+                            to carry
+                            with them long after the session ends.
+                        </p>
+                        <p>My coaching style is built around one thing above all: <strong>confidence</strong>. We learn
+                            and master
+                            the basics until they're second nature, because real confidence comes from knowing you can
+                            do it. From
+                            there, everything else grows.</p>
+                        <p>Every player is different, so I plan every session around the individual. We start with an
+                            evaluation, I
+                            build each practice around what that child needs, and I check in with parents for what
+                            they're seeing
+                            at home and at games.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section class="gallery2 cid-uoKvmIwcO1" id="gallery2-t">
-
-
-        <div class="container">
-            <div class="mbr-section-head">
-                <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-7">
-                    <strong>Programs&nbsp;</strong>
-                    <div><strong><br></strong></div>
-                </h4>
-
-            </div>
-            <div class="row mt-4">
-                <div class="item features-image сol-12 col-md-6 col-lg-6 active">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <img src="assets/images/mbr-1076x864.jpeg" alt="">
+            <!-- ============ STATS ============ -->
+            <section class="stats">
+                <div class="wrap">
+                    <div class="stats__grid">
+                        <div class="stat reveal"><b data-count="12" data-suffix="+">12+</b><span>Years playing</span>
                         </div>
-                        <div class="item-content">
-                            <h5 class="item-title mbr-fonts-style display-5">Private Lessons</h5>
-
-                            <p class="mbr-text mbr-fonts-style mt-3 display-7">&nbsp;For the ultimate personalized
-                                experience, I offer one-on-one sessions that cater specifically to your child's needs.
-                                These sessions focus intensely on individual skills and tactics, with personalized notes
-                                on progress and recommendations for home practice. The fee for this private lesson is
-                                $65 per player, per one hour session.</p>
-                        </div>
-                        <div class="mbr-section-btn item-footer mt-2"><a href="https://forms.gle/E9MfnnS1Wc696JCA6"
-                                class="btn item-btn btn-secondary-outline display-7" target="_blank">Sign up here</a>
-                        </div>
+                        <div class="stat reveal"><b data-count="4">4</b><span>Years coaching kids</span></div>
+                        <div class="stat reveal"><b>1&ndash;6</b><span>Players per session</span></div>
+                        <div class="stat reveal"><b>$0</b><span>Gear to bring</span></div>
                     </div>
                 </div>
-                <div class="item features-image сol-12 col-md-6 col-lg-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <img src="assets/images/mbr-2-1076x717.jpg" data-slide-to="2" alt="">
-                        </div>
-                        <div class="item-content">
-                            <h5 class="item-title mbr-fonts-style display-5">Private Group Sessions</h5>
+            </section>
 
-                            <p class="mbr-text mbr-fonts-style mt-3 display-7">These sessions are designed for 2-4
-                                players, providing a more focused and intimate setting for learning. We cover a
-                                comprehensive range of skills, from dribbling and tactics to attacking and defending,
-                                tailoring each session to align with the group's specific objectives. The fee for this
-                                group session is $45 per player, per one hour session.</p>
+            <!-- ============ PROGRAMS ============ -->
+            <section class="section" id="programs">
+                <div class="wrap">
+                    <div class="section-head reveal">
+                        <span class="kicker">Programs</span>
+                        <h2 class="h2">Pick the setup that fits your player</h2>
+                        <p>Every program is one hour, priced per player, and built around your child's level and goals.
+                        </p>
+                    </div>
+
+                    <div class="cards">
+                        <article class="card reveal">
+                            <img class="card__img" src="assets/images/mbr-1076x864.jpeg" width="938" height="453"
+                                alt="A young player dribbling a ball on a grass field" loading="lazy" decoding="async">
+                            <div class="card__price">$65<small>/ player · 1 hr</small></div>
+                            <div class="card__body">
+                                <span class="card__tag">One-on-one</span>
+                                <h3>Private Lessons</h3>
+                                <p>The ultimate personalized session. Intense focus on individual skills and tactics,
+                                    with
+                                    progress notes and recommendations for practice at home.</p>
+                                <a class="btn btn--green" href="#book" data-book-tab="private">Book this ↓</a>
+                            </div>
+                        </article>
+
+                        <article class="card reveal">
+                            <img class="card__img" src="assets/images/mbr-2-1076x717.jpg" width="1076" height="717"
+                                alt="Two young players racing for the ball during a drill" loading="lazy"
+                                decoding="async">
+                            <div class="card__price">$45<small>/ player · 1 hr</small></div>
+                            <div class="card__body">
+                                <span class="card__tag">2&ndash;4 players</span>
+                                <h3>Private Group Sessions</h3>
+                                <p>A focused, intimate setting for a small group. We cover dribbling, tactics, attacking
+                                    and
+                                    defending — tailored to the group's objectives.</p>
+                                <a class="btn btn--green" href="#book" data-book-tab="group">Book this ↓</a>
+                            </div>
+                        </article>
+
+                        <article class="card reveal">
+                            <img class="card__img" src="assets/images/mbr-1076x927.jpg" width="1076" height="927"
+                                alt="A youth soccer team huddled together on the field" loading="lazy" decoding="async">
+                            <div class="card__price">$35<small>/ player · 1 hr</small></div>
+                            <div class="card__body">
+                                <span class="card__tag">4&ndash;6 players</span>
+                                <h3>Skills Summer Camp</h3>
+                                <p>Personalized instruction and skill-building at every level. Each session grows your
+                                    child's
+                                    dribbling, passing, and shooting in a focused environment.</p>
+                                <a class="btn btn--green" href="#book" data-book-tab="camp">Book this ↓</a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <p class="programs__note reveal">Not sure which fits? <a
+                            href="mailto:coach.m712@gmail.com?subject=Soccer%20program%20question">Email me</a> and
+                        we'll
+                        figure it out together.</p>
+                </div>
+            </section>
+
+            <!-- ============ HOW IT WORKS ============ -->
+            <section class="section how" id="how">
+                <div class="wrap">
+                    <div class="section-head reveal" style="max-width:44ch">
+                        <span class="kicker kicker--light">Unlocking potential</span>
+                        <h2 class="h2">How it works</h2>
+                    </div>
+
+                    <div class="how__steps">
+                        <div class="step reveal">
+                            <b>1</b>
+                            <h3>Pick your program</h3>
+                            <p>Choose the setup and schedule that works best for your child and your family.</p>
                         </div>
-                        <div class="mbr-section-btn item-footer mt-2"><a href="https://forms.gle/E9MfnnS1Wc696JCA6"
-                                class="btn item-btn btn-secondary-outline display-7" target="_blank">Sign up here</a>
+                        <div class="step reveal">
+                            <b>2</b>
+                            <h3>Pick a time</h3>
+                            <p>Book straight into my calendar and tell me a little about your child so I can plan the
+                                right
+                                sessions from day one.</p>
+                        </div>
+                        <div class="step reveal">
+                            <b>3</b>
+                            <h3>Just show up and play</h3>
+                            <p>No need to bring anything — I provide the balls, cones, and all the gear.</p>
                         </div>
                     </div>
-                </div>
-                <div class="item features-image сol-12 col-md-6 col-lg-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <img src="assets/images/mbr-1076x927.jpg" alt="" title="" data-slide-to="2">
-                        </div>
-                        <div class="item-content">
-                            <h5 class="item-title mbr-fonts-style display-5">Skills Summer Camp</h5>
 
-                            <p class="mbr-text mbr-fonts-style mt-3 display-7">&nbsp;Ideal for groups (4-6 players),
-                                this camp focuses on personalized instruction and skill enhancement at every level. Each
-                                session provides an opportunity for your child to improve in dribbling, passing, and
-                                shooting, ensuring growth in a focused environment. The fee for this camp $35 per
-                                player, per one hour session.</p>
-                        </div>
-                        <div class="mbr-section-btn item-footer mt-2"><a href="https://forms.gle/E9MfnnS1Wc696JCA6"
-                                class="btn item-btn btn-secondary-outline display-7" target="_blank">Sign up here</a>
-                        </div>
+                    <div class="how__foot reveal">
+                        <p>Sessions run at a local park — or in your own backyard if you'd prefer. We'll find the option
+                            that
+                            fits your availability.</p>
+                        <a class="btn btn--primary" href="#book">Pick a time ↓</a>
                     </div>
                 </div>
+            </section>
 
-            </div>
-        </div>
-    </section>
+            <!-- ============ BOOK (Calendly) ============
+             All 3 events are linked. Still worth checking on calendly.com that each
+             has: Duration → 60 min, Location → in person. For Group Sessions and
+             Skills Camp, using Calendly's "Group Event" type (capped at 4 / 6 people
+             per slot) fits better than a regular 1-on-1 event, since several
+             families should be able to land in the same session. -->
+            <section class="section book" id="book">
+                <div class="wrap">
+                    <div class="book__head reveal">
+                        <span class="kicker">Book a session</span>
+                        <h2 class="h2">Grab a time that works</h2>
+                        <p>Pick your program, then a slot — the calendar shows my real availability, so anything you can
+                            see is open.</p>
+                    </div>
 
-    <section class="header1 cid-s48MCQYojq mbr-parallax-background" id="header1-f">
+                    <div class="book__tabs reveal" role="tablist" aria-label="Choose a program to book">
+                        <button class="book__tab" type="button" data-tab="private" role="tab"
+                            aria-selected="true">Private Lessons</button>
+                        <button class="book__tab" type="button" data-tab="group" role="tab" aria-selected="false">Group
+                            Sessions</button>
+                        <button class="book__tab" type="button" data-tab="camp" role="tab" aria-selected="false">Skills
+                            Camp</button>
+                    </div>
 
-
-        <!-- this is the unllocking potential css -->
-        <div class="mbr-overlay" style="opacity: 1; background-color: rgb(55, 14, 96);"></div>
-
-        <div class="align-center container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-12">
-                    <h1 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>UNLOCKING
-                            POTENTIAL&nbsp;</strong></h1>
-
-                    <p class="mbr-text mbr-fonts-style display-2"><strong>No need to bring any equipment—I provide
-                            balls, cones, and more!<br></strong><br>Please fill out the form to help me understand
-                        your child’s soccer experience. Choose the program that best suits your child's or schedule
-                        preferences.&nbsp;<br><br>These programs will be hosted at a local park, but if you prefer, we
-                        can also arrange sessions in your own backyard. I'm happy to discuss the best option based on
-                        your availability.<br><br><br></p>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="form5 cid-unRg4WTHx5" id="form5-p">
-
-
-        <div class="container">
-            <div class="mbr-section-head">
-                <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5">
-                    <strong>Contact&nbsp; &nbsp;</strong>
-                </h3>
-
-            </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
-                    <form method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input
-                            type="hidden" name="email" data-form-email="true"
-                            value="0ZBTeDH9vlHJz2C4cw+pjyZ8MHhGehMzDcRmeb/mL9kOiLCvw3C5dbEsiZH7TEq0hUoc0oJqbw8pj1owGs4VUdJRr9RJK2KUD+ZPdhR0d2NwkaJMhhEy7g1ZT7OR19k=">
-                        <div class="row">
-                            <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for
-                                filling out
-                                the form!</div>
-                            <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...!
-                                some
-                                problem!</div>
+                    <div class="book__widget reveal">
+                        <div id="calendlyEmbed"
+                            data-tab-private="https://calendly.com/magalycollabs/private-lesson?hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=0b7c3d"
+                            data-tab-group="https://calendly.com/magalycollabs/group-sessions?hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=0b7c3d"
+                            data-tab-camp="https://calendly.com/magalycollabs/skills-camp?hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=0b7c3d">
+                            <p class="book__placeholder">Loading the calendar&hellip;</p>
                         </div>
-                        <div class="dragArea row">
-                            <div class="col-md col-sm-12 form-group" data-for="name">
-                                <input type="text" name="name" placeholder="Name" data-form-field="name"
-                                    class="form-control" value="" id="name-form5-p">
-                            </div>
-                            <div class="col-md col-sm-12 form-group" data-for="email">
-                                <input type="email" name="email" placeholder="E-mail" data-form-field="email"
-                                    class="form-control" value="" id="email-form5-p">
-                            </div>
+                    </div>
 
-                            <div class="col-12 form-group" data-for="textarea">
-                                <textarea name="textarea" placeholder="Message" data-form-field="textarea"
-                                    class="form-control" id="textarea-form5-p"></textarea>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
-                                <button type="submit" class="btn btn-primary display-4">Send message</button>
+                    <p class="book__fallback reveal">
+                        Calendar not loading?
+                        <a id="bookFallbackLink" href="https://calendly.com/magalycollabs/private-lesson"
+                            target="_blank" rel="noopener">Open it on Calendly ↗</a>
+                        or email <a href="mailto:coach.m712@gmail.com">coach.m712@gmail.com</a>.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============ CONTACT ============ -->
+            <section class="section" id="contact">
+                <div class="wrap">
+                    <div class="contact__grid">
+                        <div class="contact__intro reveal">
+                            <span class="kicker">Get in touch</span>
+                            <h2 class="h2">Questions? Send a message</h2>
+                            <p>The fastest way to reach me is through text.</p>
+                            <a class="contact__mail" href="mailto:coach.m712@gmail.com">coach.m712@gmail.com</a>
+
+                            <div class="contact__note">
+                                You can always message me here if you have any questions, or book a one-on-one call
+                                above if
+                                you'd like to discuss anything in more detail.
+                                <a href="tel:8329092249">832-909-2249</a>
                             </div>
                         </div>
-                    </form>
+
+                        <!-- SETUP — get a free access key at https://web3forms.com (just enter your
+                             email, no account needed, key arrives instantly) and paste it below in
+                             place of REPLACE_WEB3FORMS_KEY. Until then this form won't send. -->
+                        <form class="mbr-form reveal" id="contactForm" action="https://api.web3forms.com/submit"
+                            method="POST">
+                            <input type="hidden" name="access_key" value="REPLACE_WEB3FORMS_KEY">
+                            <input type="hidden" name="subject" value="New message from your website">
+                            <input type="text" name="botcheck" tabindex="-1" autocomplete="off"
+                                style="position:absolute;left:-9999px" aria-hidden="true">
+
+                            <div id="formAlertOk" hidden class="form-alert ok">Thanks for your message! I'll get back
+                                to you soon.</div>
+                            <div id="formAlertBad" hidden class="form-alert bad">Oops&hellip; something went wrong.
+                                Please email or text me instead.</div>
+
+                            <label class="sr-only" for="name-c">Name</label>
+                            <input type="text" name="name" placeholder="Your name" class="form-control" id="name-c"
+                                required>
+
+                            <label class="sr-only" for="email-c">Email</label>
+                            <input type="email" name="email" placeholder="Your e-mail" class="form-control"
+                                id="email-c" required>
+
+                            <label class="sr-only" for="phone-c">Phone (optional)</label>
+                            <input type="tel" name="phone" placeholder="Your phone (optional)" class="form-control"
+                                id="phone-c">
+
+                            <label class="sr-only" for="msg-c">Message</label>
+                            <textarea name="message" placeholder="How can I help? Tell me about your player."
+                                class="form-control" id="msg-c" required></textarea>
+
+                            <button type="submit" class="btn btn--green btn--lg" id="formSubmitBtn">Send
+                                message</button>
+                        </form>
+                    </div>
                 </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap">
+                <a class="brand" href="#top" aria-label="Coach M — back to top">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <circle class="ball-bg" cx="16" cy="16" r="15" fill="#ffffff" />
+                        <path class="ball-fg" fill="#05351d"
+                            d="M16 6.2l3.7 2.7-1.4 4.3h-4.6l-1.4-4.3zM8.6 12.1l3.6 1.2v4.4l-3.8 1.1-1.4-4.3zm14.8 0l1.6 2.4-1.4 4.3-3.8-1.1v-4.4zM12.4 19.7h7.2l1.5 4.1L16 26.4l-4.6-2.6z" />
+                    </svg>
+                    Coach&nbsp;M
+                </a>
+                <ul class="footer-links">
+                    <li><a href="#about">My story</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#how">How it works</a></li>
+                    <li><a href="#book">Book</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <p class="footer-copy">© <span id="year">2026</span> Coach M · Youth soccer training · <a
+                        href="mailto:coach.m712@gmail.com">coach.m712@gmail.com</a></p>
             </div>
-        </div>
-    </section>
-    <section
-        style="background-color: rgb(55, 14, 96); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;">
-        <a style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a>
-        <p style="flex: 0 0 auto; margin:0; padding-right:1rem;"> <a href="https://mobirise.site/w"
-                style="color:#fb1313;"></a></p>
-    </section>
-    <script src="assets/web/assets/jquery/jquery.min.js"></script>
-    <script src="assets/popper/popper.min.js"></script>
-    <script src="assets/tether/tether.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/smoothscroll/smooth-scroll.js"></script>
-    <script src="assets/viewportchecker/jquery.viewportchecker.js"></script>
-    <script src="assets/parallax/jarallax.min.js"></script>
-    <script src="assets/dropdown/js/nav-dropdown.js"></script>
-    <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-    <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-    <script src="assets/formstyler/jquery.formstyler.js"></script>
-    <script src="assets/formstyler/jquery.formstyler.min.js"></script>
-    <script src="assets/datepicker/jquery.datetimepicker.full.js"></script>
-    <script src="assets/theme/js/script.js"></script>
-    <script src="assets/formoid/formoid.min.js"></script>
+        </footer>
+    </div><!-- /#app -->
 
+    <a href="#top" class="to-top" id="toTop" aria-label="Back to top">↑</a>
 
-    <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i
-                class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
-    <input name="animation" type="hidden">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "Coach M — Youth Soccer Training",
+      "description": "Private soccer lessons, small-group sessions, and skills camps for young players with Coach M, a licensed coach.",
+      "email": "coach.m712@gmail.com",
+      "sport": "Soccer",
+      "priceRange": "$35–$65 per session",
+      "makesOffer": [
+        { "@type": "Offer", "name": "Private Lessons", "price": "65", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Private Group Sessions", "price": "45", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Skills Summer Camp", "price": "35", "priceCurrency": "USD" }
+      ]
+    }
+    </script>
+
+    <script>
+        (function ()
+        {
+            "use strict";
+            var header = document.getElementById('siteHeader');
+            var toTop = document.getElementById('toTop');
+            var toggle = document.getElementById('navToggle');
+            var links = document.getElementById('navLinks');
+            var root = document.documentElement;
+
+            // Dark / light theme toggle
+            var themeToggle = document.getElementById('themeToggle');
+            var themeMeta = document.getElementById('themeColor');
+            function syncTheme(t)
+            {
+                var dark = t === 'dark';
+                if (themeMeta) themeMeta.setAttribute('content', dark ? '#0e1211' : '#0B7C3D');
+                if (themeToggle) themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+            }
+            syncTheme(root.getAttribute('data-theme'));
+            themeToggle.addEventListener('click', function ()
+            {
+                var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch (e) { }
+                syncTheme(next);
+            });
+
+            /* ---- Intro: soccer-ball splash, then the laptop lid swings open ----
+               GSAP (loaded via CDN) is the animation framework driving this.
+               Falls back to CSS keyframes, and is skipped for reduced-motion.
+               The lid carries a 3D transform, so we clear it when done. */
+            var lid = document.querySelector('.laptop__lid');
+            var viewport = document.querySelector('.laptop__viewport');
+            var introScreen = document.getElementById('introScreen');
+            var introDone = false;
+            function endIntro()
+            {
+                if (introDone) return;
+                introDone = true;
+                root.classList.remove('intro', 'is-opening', 'css-intro');
+                root.classList.add('intro-done');
+                if (lid) { lid.style.animation = ''; lid.style.transform = ''; }
+                if (viewport) { viewport.style.animation = ''; viewport.style.opacity = ''; }
+                if (introScreen) { introScreen.style.display = 'none'; }
+            }
+
+            function startIntro()
+            {
+                var reduce = false;
+                try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { }
+                if (reduce || !lid || !root.classList.contains('intro')) { endIntro(); return; }
+
+                if (window.gsap)
+                {
+                    var g = window.gsap;
+                    var tl = g.timeline({ onComplete: endIntro });
+                    // 1. soccer ball rolls in from the left (position + spin move together)
+                    tl.from('.intro-screen__ball', { opacity: 0, duration: 0.25, ease: 'none' })
+                        .from('.ball-travel', { xPercent: -190, duration: 0.95, ease: 'power2.out' }, 0)
+                        .from('.ball-turn', { rotation: -430, transformOrigin: '50% 50%', duration: 0.95, ease: 'power2.out' }, 0)
+                        .from('.intro-screen__shadow', { opacity: 0, scale: 0.4, duration: 0.5, ease: 'power1.out' }, 0.35)
+                        .from('.intro-screen__text', { y: 22, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.45)
+                        // 2. splash lifts away
+                        .to(introScreen, { yPercent: -100, duration: 0.6, ease: 'power3.inOut' }, 1.55)
+                        .set(introScreen, { display: 'none' })
+                        // 3. the laptop opens
+                        .fromTo(lid,
+                            { rotateX: 74, opacity: 0.5, transformPerspective: 2600, transformOrigin: '50% 100%' },
+                            { rotateX: 0, opacity: 1, duration: 1.15, ease: 'power3.out' }, 1.8)
+                        .fromTo(viewport, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power1.out' }, '-=0.7');
+                } else
+                {
+                    // no framework available — let the matching CSS keyframes play
+                    root.classList.add('css-intro');
+                    lid.addEventListener('animationend', function (e)
+                    {
+                        if (e.animationName === 'lid-open') endIntro();
+                    });
+                }
+                setTimeout(endIntro, 4200);
+            }
+
+            if (document.readyState === 'loading')
+            {
+                document.addEventListener('DOMContentLoaded', startIntro);
+            } else
+            {
+                startIntro();
+            }
+
+            // Sticky header + back-to-top visibility
+            function onScroll()
+            {
+                var y = window.scrollY || window.pageYOffset;
+                header.classList.toggle('is-stuck', y > 40);
+                toTop.classList.toggle('show', y > 600);
+            }
+            onScroll();
+            window.addEventListener('scroll', onScroll, { passive: true });
+
+            // Mobile menu
+            function closeMenu()
+            {
+                links.classList.remove('is-open');
+                header.classList.remove('is-menu-open');
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.setAttribute('aria-label', 'Open menu');
+            }
+            toggle.addEventListener('click', function ()
+            {
+                var open = links.classList.toggle('is-open');
+                header.classList.toggle('is-menu-open', open);
+                toggle.setAttribute('aria-expanded', String(open));
+                toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            });
+            links.addEventListener('click', function (e)
+            {
+                if (e.target.closest('a')) closeMenu();
+            });
+            document.addEventListener('keydown', function (e)
+            {
+                if (e.key === 'Escape') closeMenu();
+            });
+
+            // Reveal on scroll
+            var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+            function revealAll() { reveals.forEach(function (el) { el.classList.add('is-visible'); }); }
+            if ('IntersectionObserver' in window)
+            {
+                var io = new IntersectionObserver(function (entries)
+                {
+                    entries.forEach(function (entry)
+                    {
+                        if (entry.isIntersecting)
+                        {
+                            entry.target.classList.add('is-visible');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+                reveals.forEach(function (el) { io.observe(el); });
+                // Safety net: never let content stay hidden if the observer misfires
+                window.addEventListener('load', function () { setTimeout(revealAll, 2500); });
+            } else
+            {
+                revealAll();
+            }
+
+            // Footer year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            /* ---- Contact form: submit to Web3Forms without leaving the page ----
+               The <form action> above is the no-JS fallback (a real POST straight
+               to Web3Forms); this upgrades it to an inline success/error message. */
+            var contactForm = document.getElementById('contactForm');
+            if (contactForm)
+            {
+                var formOk = document.getElementById('formAlertOk');
+                var formBad = document.getElementById('formAlertBad');
+                var formBtn = document.getElementById('formSubmitBtn');
+                contactForm.addEventListener('submit', function (e)
+                {
+                    e.preventDefault();
+                    if (formOk) formOk.hidden = true;
+                    if (formBad) formBad.hidden = true;
+                    var sending = formBtn.textContent;
+                    formBtn.disabled = true;
+                    formBtn.textContent = 'Sending…';
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        headers: { Accept: 'application/json' },
+                        body: new FormData(contactForm)
+                    })
+                        .then(function (res) { return res.json(); })
+                        .then(function (data)
+                        {
+                            formBtn.disabled = false;
+                            formBtn.textContent = sending;
+                            if (data && data.success)
+                            {
+                                if (formOk) formOk.hidden = false;
+                                contactForm.reset();
+                            } else if (formBad) { formBad.hidden = false; }
+                        })
+                        .catch(function ()
+                        {
+                            formBtn.disabled = false;
+                            formBtn.textContent = sending;
+                            if (formBad) formBad.hidden = false;
+                        });
+                });
+            }
+
+            /* ---- Stat counters: count up from 0 when the green band scrolls into view ---- */
+            var statEls = [].slice.call(document.querySelectorAll('.stat b[data-count]'));
+            if (statEls.length)
+            {
+                var reduceForCounters = false;
+                try { reduceForCounters = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { }
+
+                var formatCount = function (n, el)
+                {
+                    var prefix = el.getAttribute('data-prefix') || '';
+                    var suffix = el.getAttribute('data-suffix') || '';
+                    return prefix + Math.round(n) + suffix;
+                };
+
+                var animateCount = function (el)
+                {
+                    var target = parseFloat(el.getAttribute('data-count'));
+                    if (reduceForCounters || isNaN(target))
+                    {
+                        el.textContent = formatCount(target || 0, el);
+                        return;
+                    }
+                    if (window.gsap)
+                    {
+                        var obj = { val: 0 };
+                        window.gsap.to(obj, {
+                            val: target, duration: 1.3, ease: 'power2.out',
+                            onUpdate: function () { el.textContent = formatCount(obj.val, el); },
+                            onComplete: function () { el.textContent = formatCount(target, el); }
+                        });
+                    } else
+                    {
+                        var start = null, duration = 1300;
+                        var step = function (ts)
+                        {
+                            if (!start) start = ts;
+                            var p = Math.min((ts - start) / duration, 1);
+                            var eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+                            el.textContent = formatCount(target * eased, el);
+                            if (p < 1) requestAnimationFrame(step);
+                        };
+                        requestAnimationFrame(step);
+                    }
+                };
+
+                if ('IntersectionObserver' in window)
+                {
+                    var statIO = new IntersectionObserver(function (entries)
+                    {
+                        entries.forEach(function (entry)
+                        {
+                            if (entry.isIntersecting)
+                            {
+                                statEls.forEach(animateCount);
+                                statIO.disconnect();
+                            }
+                        });
+                    }, { threshold: 0.4 });
+                    statIO.observe(document.querySelector('.stats'));
+                } else
+                {
+                    statEls.forEach(animateCount);
+                }
+            }
+
+            /* ---- Calendly: one tab per program, loaded only when needed ----
+               Calendly's inline widget is heavy (it spins up a full page inside
+               an iframe), so we never load more than one at a time, and never
+               before it's actually wanted: the default tab loads once the
+               section is close to the viewport; switching tabs (or clicking a
+               program's "Book this" button) loads that program's calendar. */
+            var calEl = document.getElementById('calendlyEmbed');
+            var bookTabs = [].slice.call(document.querySelectorAll('.book__tab'));
+            var bookFallback = document.getElementById('bookFallbackLink');
+            var calCurrentTab = 'private';
+            var calStarted = false;
+
+            function calUrlFor(tab)
+            {
+                return calEl ? calEl.getAttribute('data-tab-' + tab) : null;
+            }
+
+            function setActiveTab(tab)
+            {
+                calCurrentTab = tab;
+                bookTabs.forEach(function (btn)
+                {
+                    btn.setAttribute('aria-selected', String(btn.getAttribute('data-tab') === tab));
+                });
+                var url = calUrlFor(tab);
+                if (bookFallback && url) bookFallback.href = url.split('?')[0];
+            }
+
+            function renderCalendlyTab(tab)
+            {
+                var url = calUrlFor(tab);
+                if (!calEl || !url) return;
+                calStarted = true;
+                calEl.innerHTML = '<p class="book__placeholder">Loading the calendar&hellip;</p>';
+                (function waitForCalendly(tries)
+                {
+                    if (window.Calendly && window.Calendly.initInlineWidget)
+                    {
+                        calEl.innerHTML = '';
+                        window.Calendly.initInlineWidget({ url: url, parentElement: calEl, prefill: {}, utm: {} });
+                    } else if (tries > 0)
+                    {
+                        setTimeout(function () { waitForCalendly(tries - 1); }, 200);
+                    }
+                })(50); // give the (async) Calendly script up to ~10s to arrive
+            }
+
+            function goToTab(tab)
+            {
+                setActiveTab(tab);
+                renderCalendlyTab(tab);
+            }
+
+            setActiveTab(calCurrentTab); // reflect the default tab in the UI before anything loads
+
+            bookTabs.forEach(function (btn)
+            {
+                btn.addEventListener('click', function () { goToTab(btn.getAttribute('data-tab')); });
+            });
+            document.querySelectorAll('[data-book-tab]').forEach(function (el)
+            {
+                el.addEventListener('click', function () { goToTab(el.getAttribute('data-book-tab')); });
+            });
+
+            if (calEl)
+            {
+                if ('IntersectionObserver' in window)
+                {
+                    var calIO = new IntersectionObserver(function (entries)
+                    {
+                        entries.forEach(function (entry)
+                        {
+                            if (entry.isIntersecting && !calStarted)
+                            {
+                                renderCalendlyTab(calCurrentTab);
+                                calIO.disconnect();
+                            }
+                        });
+                    }, { rootMargin: '600px 0px' });
+                    calIO.observe(calEl);
+                } else
+                {
+                    renderCalendlyTab(calCurrentTab);
+                }
+            }
+        })();
+    </script>
+
+    <!-- Calendly scheduling widget (Book a session section) -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 
 </html>
